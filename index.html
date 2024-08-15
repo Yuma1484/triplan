@@ -27,11 +27,24 @@
         .flatpickr-calendar {
             width: 100%;  /* カレンダーの幅を親要素にフィット */
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column; /* カレンダーを縦に並べる */
+            display: grid;
+            grid-template-columns: 1fr; /* 1列に設定して縦に並べる */
+            grid-template-rows: auto auto; /* 2つの月が縦に並ぶ */
+            row-gap: 10px; /* 月間のスペースを調整 */
+        }
+        .flatpickr-months {
+            display: contents; /* 月の全体レイアウトを保持 */
         }
         .flatpickr-month {
             width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .flatpickr-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            justify-items: center;
+            align-items: center;
         }
     </style>
 </head>
