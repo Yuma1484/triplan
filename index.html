@@ -26,8 +26,12 @@
         }
         .flatpickr-calendar {
             width: 100%;  /* カレンダーの幅を親要素にフィット */
-            max-width: 100%;  /* 幅を画面に収める */
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column; /* カレンダーを縦に並べる */
+        }
+        .flatpickr-month {
+            width: 100%;
         }
     </style>
 </head>
@@ -43,7 +47,7 @@
     mode: "range",
     dateFormat: "Y-m-d",
     minDate: "today",
-    showMonths: 2,  // 2つの月を並べて表示
+    showMonths: 2,  // 2つの月を表示
     inline: true,  // カレンダーを常に表示する
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
