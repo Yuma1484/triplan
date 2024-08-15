@@ -22,18 +22,16 @@
             max-width: 600px;
             margin: 20px;
         }
-        #date-picker {
+        /* カレンダーを画面全体に表示 */
+        .flatpickr-calendar {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
 
 <div class="calendar-container">
-    <input type="text" id="date-picker" placeholder="Select your stay dates">
+    <div id="date-picker"></div> <!-- カレンダーだけを表示 -->
 </div>
 
 <script>
@@ -43,6 +41,7 @@
     dateFormat: "Y-m-d",
     minDate: "today",
     showMonths: 2,  // 2つの月を並べて表示
+    inline: true,  // カレンダーを常に表示する
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
     }
