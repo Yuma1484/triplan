@@ -38,12 +38,10 @@
 </head>
 <body>
 
-<div id="calendar-container">
-    <input type="text" id="datePicker" placeholder="日付を選択">
-</div>
+<div id="calendar-container"></div>
 
 <script>
-    flatpickr("#datePicker", {
+    flatpickr("#calendar-container", {
         mode: "range",  // 範囲選択モードを有効にする
         dateFormat: "Y-m-d",  // 日付フォーマットを設定
         locale: "ja",  // 日本語ロケールを指定
@@ -62,5 +60,6 @@
 
 </body>
 </html>
+
 
 
