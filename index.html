@@ -18,11 +18,9 @@
             height: 100vh;
             background-color: #f0f0f0;
             box-sizing: border-box;
-            overflow-y: auto;  /* 縦スクロールを許可 */
         }
         .calendar-container {
             width: 100%;  /* 画面の幅に合わせる */
-            max-width: 500px;  /* 最大幅を設定 */
             padding: 10px;
             box-sizing: border-box;
         }
@@ -33,10 +31,11 @@
         .flatpickr-months {
             display: flex;
             flex-direction: column;  /* 月全体を縦に並べる */
-            gap: 20px;  /* 月の間にスペースを設定 */
+            width: 100%;
         }
         .flatpickr-month {
             width: 100%;
+            margin-bottom: 10px;  /* 月間のスペースを調整 */
         }
         .flatpickr-days {
             display: grid;
@@ -60,12 +59,6 @@
     minDate: "today",
     showMonths: 2,  // 2つの月を表示
     inline: true,  // カレンダーを常に表示する
-    onReady: function() {
-        // カレンダーが準備できたら、スタイルを調整
-        document.querySelectorAll('.flatpickr-calendar').forEach(calendar => {
-            calendar.style.flexDirection = 'column';
-        });
-    },
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
     }
