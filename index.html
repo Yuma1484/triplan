@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizontal Scrollable Calendar</title>
+    <title>Swipeable Calendar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -17,56 +17,81 @@
             justify-content: center;
             align-items: center;
             background-color: white;
+            overflow: hidden; /* スクロールバーを隠す */
         }
-        #calendar-container {
+        #calendar-wrapper {
             width: 100%;
-            max-width: 100%;
+            max-width: 400px; /* 画面幅に合わせて調整 */
             height: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: auto; /* 横スクロールを有効に */
-            background-color: white;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+        }
+        .calendar-container {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
         }
         .flatpickr-calendar {
-            display: flex;
-            flex-direction: row; /* 横に並べる */
-            width: auto;
+            width: 100%;
             height: 100%;
             box-sizing: border-box;
             font-size: 20px;
             background-color: white;
-        }
-        .flatpickr-month {
-            margin-right: 20px; /* 月の間にスペースを追加 */
-        }
-        .flatpickr-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            justify-items: center;
-            align-items: center;
+            padding-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-<div id="calendar-container"></div>
+<div id="calendar-wrapper">
+    <div class="calendar-container" id="calendar1"></div>
+    <div class="calendar-container" id="calendar2"></div>
+    <div class="calendar-container" id="calendar3"></div>
+</div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        flatpickr("#calendar-container", {
-            mode: "range",  // 範囲選択モードを有効にする
-            dateFormat: "Y-m-d",  // 日付フォーマットを設定
-            locale: "ja",  // 日本語ロケールを指定
-            inline: true,  // カレンダーを常に表示する
-            showMonths: 3,  // 3ヶ月分のカレンダーを横に表示
-            onReady: function() {
-                const calendar = document.querySelector('.flatpickr-calendar');
-                calendar.style.width = 'auto';
-                calendar.style.height = '100%';
-            },
-            onChange: function(selectedDates, dateStr, instance) {
-                console.log(`Selected date range: ${dateStr}`);
+    const calendars = [
+        flatpickr("#calendar1", {
+            inline: true,
+            dateFormat: "Y-m-d",
+            locale: "ja",
+            defaultDate: new Date(),
+            onReady: function(selectedDates, dateStr, instance) {
+                instance.changeMonth(0, false); // 初期月を設定
+            }
+        }),
+        flatpickr("#calendar2", {
+            inline: true,
+            dateFormat: "Y-m-d",
+            locale: "ja",
+            defaultDate: new Date(),
+            onReady: function(selectedDates, dateStr, instance) {
+                instance.changeMonth(1, false); // 次の月を設定
+            }
+        }),
+        flatpickr("#calendar3", {
+            inline: true,
+            dateFormat: "Y-m-d",
+            locale: "ja",
+            defaultDate: new Date(),
+            onReady: function(selectedDates, dateStr, instance) {
+                instance.changeMonth(2, false); // 次々の月を設定
+            }
+        })
+    ];
+
+    // スワイプ時にカレンダーを更新するためのイベントリスナー
+    document.getElementById('calendar-wrapper').addEventListener('scroll', function() {
+        const wrapper = this;
+        const calendars = wrapper.querySelectorAll('.calendar-container');
+
+        calendars.forEach((cal, index) => {
+            const rect = cal.getBoundingClientRect();
+            if (rect.left >= 0 && rect.left < window.innerWidth) {
+                // カレンダーが画面内に完全に表示されたときに月を更新
+                const fp = cal._flatpickr;
+                fp.jumpToDate(new Date(fp.currentYear, fp.currentMonth, 1));
             }
         });
     });
@@ -74,6 +99,7 @@
 
 </body>
 </html>
+
 
 
 
