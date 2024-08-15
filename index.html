@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertical Scrollable Calendar</title>
+    <title>Horizontal Scrollable Calendar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -20,39 +20,31 @@
         }
         #calendar-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 100%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-y: auto; /* 縦スクロールを有効に */
+            overflow-x: auto; /* 横スクロールを有効に */
             background-color: white;
         }
         .flatpickr-calendar {
-            width: 100%;
-            height: auto;
+            display: flex;
+            flex-direction: row; /* 横に並べる */
+            width: auto;
+            height: 100%;
             box-sizing: border-box;
             font-size: 20px;
             background-color: white;
-            padding-bottom: 10px;
-        }
-        .flatpickr-months {
-            display: block;
-            width: 100%;
         }
         .flatpickr-month {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
+            margin-right: 20px; /* 月の間にスペースを追加 */
         }
         .flatpickr-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             justify-items: center;
             align-items: center;
-            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -67,11 +59,11 @@
             dateFormat: "Y-m-d",  // 日付フォーマットを設定
             locale: "ja",  // 日本語ロケールを指定
             inline: true,  // カレンダーを常に表示する
-            showMonths: 3,  // 3ヶ月分のカレンダーを縦に表示
+            showMonths: 3,  // 3ヶ月分のカレンダーを横に表示
             onReady: function() {
                 const calendar = document.querySelector('.flatpickr-calendar');
-                calendar.style.width = '100%';
-                calendar.style.margin = '0';
+                calendar.style.width = 'auto';
+                calendar.style.height = '100%';
             },
             onChange: function(selectedDates, dateStr, instance) {
                 console.log(`Selected date range: ${dateStr}`);
@@ -82,6 +74,7 @@
 
 </body>
 </html>
+
 
 
 
