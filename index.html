@@ -17,8 +17,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff; /* 背景色を白に設定 */
-            overflow: hidden; /* 画面いっぱいに表示 */
+            background-color: #f0f0f0; /* 背景色を設定（必要に応じて変更） */
         }
         #calendar-container {
             width: 100%;
@@ -26,51 +25,41 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff; /* カレンダーコンテナも白に設定 */
         }
         .flatpickr-calendar {
-            width: 100vw;  /* 画面の幅全体に合わせる */
-            height: 100vh; /* 画面の高さ全体に合わせる */
+            width: 100%;
+            height: 100%;
             box-sizing: border-box;
             font-size: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-color: #ffffff; /* カレンダー自体も白に設定 */
-            border: none; /* 不要なボーダーをなくす */
         }
         .flatpickr-months {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin: 0; /* 月部分の余白を削除 */
-            padding: 0 10px;
         }
         .flatpickr-current-month {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
+            padding: 0 10px;  /* 月と年の選択部分に余白を追加 */
             box-sizing: border-box;
-            margin-bottom: 5px; /* 最小限の余白を設定 */
+            margin-bottom: 5px; /* ホイールピッカーが埋まらないように余白を追加 */
         }
-        .flatpickr-monthDropdown-months {
-            display: none; /* 月のホイールピッカーを非表示に */
-        }
-        .numInputWrapper {
-            flex: 1;  /* 年のホイールピッカーのみ残す */
-            max-width: 80px;
+        .flatpickr-monthDropdown-months, .numInputWrapper {
+            flex: 1;  /* 月と年のドロップダウンを均等に拡張 */
         }
         .flatpickr-days {
             flex: 1; /* 日付部分を残りのスペースに拡張 */
             display: grid;
-            grid-template-rows: repeat(6, 1fr); /* 6週間分の行を設定 */
+            grid-template-rows: auto;
             grid-template-columns: repeat(7, 1fr);
             justify-items: center;
             align-items: center;
-            width: 100%;
-            margin: 0; /* 下の余白をなくす */
         }
         .flatpickr-day {
             width: 100%;
@@ -94,11 +83,14 @@
         onReady: function() {
             // カレンダーが表示された後に実行
             const calendar = document.querySelector('.flatpickr-calendar');
-            calendar.style.width = '100vw';  // 画面の幅全体に合わせる
-            calendar.style.height = '100vh'; // 画面の高さ全体に合わせる
+            calendar.style.width = '100%';
+            calendar.style.height = '100%';
+            calendar.style.maxWidth = '100%';
+            calendar.style.maxHeight = '100%';
+            calendar.style.margin = '0';
         },
         onChange: function(selectedDates, dateStr, instance) {
-            console.log(`Selected date range: ${dateStr}`);
+            console.log(Selected date range: ${dateStr});
             // ここで選択された日付範囲をAdaloに戻す処理を追加できます
         }
     });
