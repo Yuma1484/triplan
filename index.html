@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
+    <title>Date Range Picker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
-    <h1>Welcome to My Web Page</h1>
-    <p>This is a simple HTML page.</p>
+
+    <input type="text" id="rangePicker" placeholder="Select Date Range">
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#rangePicker", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr, instance) {
+                const range = dateStr.split(" to ");
+                const startDate = range[0];
+                const endDate = range[1];
+                // 日付が選択されたときの処理
+                console.log(`Selected start date: ${startDate}, end date: ${endDate}`);
+            }
+        });
+    </script>
+
 </body>
 </html>
+
