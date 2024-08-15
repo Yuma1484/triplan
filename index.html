@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
-        /* 画面全体をカバーするスタイル設定 */
+        /* 基本のスタイル設定 */
         body, html {
             margin: 0;
             padding: 0;
@@ -70,6 +70,22 @@
             justify-content: center;
             align-items: center;
         }
+
+        /* iPhoneの縦向き用メディアクエリ */
+        @media only screen and (max-width: 768px) and (orientation: portrait) {
+            .flatpickr-calendar {
+                width: 100vw;  /* 画面の幅全体に合わせる */
+                height: 100vh; /* 画面の高さ全体に合わせる */
+            }
+        }
+
+        /* iPhoneの横向き用メディアクエリ */
+        @media only screen and (max-width: 768px) and (orientation: landscape) {
+            .flatpickr-calendar {
+                width: 100vw;  /* 画面の幅全体に合わせる */
+                height: 100vh; /* 画面の高さ全体に合わせる */
+            }
+        }
     </style>
 </head>
 <body>
@@ -100,7 +116,6 @@
 
 </body>
 </html>
-
 
 
 
