@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
-        /* 基本のスタイル設定 */
+        /* 画面全体をカバーするスタイル設定 */
         body, html {
             margin: 0;
             padding: 0;
@@ -28,8 +28,8 @@
             background-color: #ffffff; /* カレンダーコンテナも白に設定 */
         }
         .flatpickr-calendar {
-            width: 100%;
-            height: 100%;
+            width: 100vw;  /* 画面の幅全体に合わせる */
+            height: 100vh; /* 画面の高さ全体に合わせる */
             box-sizing: border-box;
             font-size: 20px;
             display: flex;
@@ -70,22 +70,6 @@
             justify-content: center;
             align-items: center;
         }
-
-        /* iPhoneの縦向き用メディアクエリ */
-        @media only screen and (max-width: 768px) and (orientation: portrait) {
-            .flatpickr-calendar {
-                width: 100vw;  /* 画面の幅全体に合わせる */
-                height: 100vh; /* 画面の高さ全体に合わせる */
-            }
-        }
-
-        /* iPhoneの横向き用メディアクエリ */
-        @media only screen and (max-width: 768px) and (orientation: landscape) {
-            .flatpickr-calendar {
-                width: 100vw;  /* 画面の幅全体に合わせる */
-                height: 100vh; /* 画面の高さ全体に合わせる */
-            }
-        }
     </style>
 </head>
 <body>
@@ -101,11 +85,8 @@
         onReady: function() {
             // カレンダーが表示された後に実行
             const calendar = document.querySelector('.flatpickr-calendar');
-            calendar.style.width = '100%';
-            calendar.style.height = '100%';
-            calendar.style.maxWidth = '100%';
-            calendar.style.maxHeight = '100%';
-            calendar.style.margin = '0';
+            calendar.style.width = '100vw';  // 画面の幅全体に合わせる
+            calendar.style.height = '100vh'; // 画面の高さ全体に合わせる
         },
         onChange: function(selectedDates, dateStr, instance) {
             console.log(`Selected date range: ${dateStr}`);
@@ -116,14 +97,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
