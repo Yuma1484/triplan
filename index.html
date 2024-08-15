@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollable Calendar with Date Range Selection</title>
+    <title>Simple Date Range Picker</title>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js'></script>
     <style>
@@ -28,6 +28,24 @@
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
+        /* 日付セルをシンプルに表示するスタイル */
+        .fc-daygrid-day {
+            font-size: 1.5em; /* 日付を大きくシンプルに表示 */
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .fc-scrollgrid {
+            border: none; /* 枠線を非表示にしてシンプルに */
+        }
+        .fc-daygrid-day-number {
+            display: block;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        .fc-daygrid-day-top {
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -40,25 +58,23 @@
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',  // 月表示で開始
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
+            headerToolbar: false,  // ヘッダーツールバーを非表示に
             locale: 'ja',  // 日本語に設定
             height: '100%',  // 画面全体に表示
             selectable: true,  // 範囲選択を有効にする
             selectMirror: true,
+            unselectAuto: false,
+            dayMaxEvents: false,  // 日付にイベントの多さを表示しない
+            showNonCurrentDates: false,  // 前月・翌月の日付を非表示
             select: function(info) {
-                // 範囲選択が行われたときの動作
-                alert('Selected range: ' + info.startStr + ' to ' + info.endStr);
-                // ここで選択された日付範囲をAdaloに戻す処理を追加できます
+                // 選択された範囲をシンプルに処理
+                console.log('範囲選択:', info.startStr, 'から', info.endStr);
+                // 必要に応じてAdaloにデータを渡す処理を追加
             },
             dateClick: function(info) {
                 // 単一の日付をクリックしたときの動作
-                alert('Selected date: ' + info.dateStr);
-                // ここで選択された日付をAdaloに戻す処理を追加できます
-            }
+                console.log('選択した日付:', info.dateStr);
+            },
         });
 
         calendar.render();
@@ -67,6 +83,7 @@
 
 </body>
 </html>
+
 
 
 
