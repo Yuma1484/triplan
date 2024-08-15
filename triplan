@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Range Picker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+
+    <input type="text" id="rangePicker" placeholder="Select Date Range">
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#rangePicker", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr, instance) {
+                // 選択された日付範囲がここで取得されます
+                console.log(dateStr); // 例: "2024-08-01 to 2024-08-15"
+                // ここでAdaloにデータを渡す処理を行います
+            }
+        });
+    </script>
+
+</body>
+</html>
