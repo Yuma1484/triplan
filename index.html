@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Date Range Picker</title>
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js'></script>
+    <title>Date Range Picker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
         /* 画面全体をカバーするスタイル設定 */
         body, html {
@@ -16,73 +17,89 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0; /* 背景色を設定（必要に応じて変更） */
+            background-color: #f0f0f0;
         }
-        #calendar {
+        #calendar-container {
             width: 100%;
-            max-width: 1000px;
-            height: 100%;
+            max-width: 600px;
+            height: auto;
             padding: 20px;
             box-sizing: border-box;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
-        /* 日付セルをシンプルに表示するスタイル */
-        .fc-daygrid-day {
-            font-size: 1.5em; /* 日付を大きくシンプルに表示 */
-            text-align: center;
-            padding: 10px;
+        .flatpickr-calendar {
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .flatpickr-months {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 0 10px;
+            margin-bottom: 5px;
             box-sizing: border-box;
         }
-        .fc-scrollgrid {
-            border: none; /* 枠線を非表示にしてシンプルに */
+        .flatpickr-current-month {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
         }
-        .fc-daygrid-day-number {
-            display: block;
-            font-weight: normal;
-            margin-bottom: 10px;
+        .flatpickr-days {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            justify-items: center;
+            align-items: center;
         }
-        .fc-daygrid-day-top {
+        .flatpickr-day {
+            width: 100%;
+            height: 100%;
+            display: flex;
             justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
 
-<div id="calendar"></div>
+<div id="calendar-container"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',  // 月表示で開始
-            headerToolbar: false,  // ヘッダーツールバーを非表示に
-            locale: 'ja',  // 日本語に設定
-            height: '100%',  // 画面全体に表示
-            selectable: true,  // 範囲選択を有効にする
-            selectMirror: true,
-            unselectAuto: false,
-            dayMaxEvents: false,  // 日付にイベントの多さを表示しない
-            showNonCurrentDates: false,  // 前月・翌月の日付を非表示
-            select: function(info) {
-                // 選択された範囲をシンプルに処理
-                console.log('範囲選択:', info.startStr, 'から', info.endStr);
-                // 必要に応じてAdaloにデータを渡す処理を追加
+        flatpickr("#calendar-container", {
+            mode: "range",  // 範囲選択モードを有効にする
+            dateFormat: "Y-m-d",  // 日付フォーマットを設定
+            locale: "ja",  // 日本語ロケールを指定
+            inline: true,  // カレンダーを常に表示する
+            onReady: function() {
+                // カレンダーが表示された後に実行
+                const calendar = document.querySelector('.flatpickr-calendar');
+                calendar.style.width = '100%';
+                calendar.style.height = 'auto';
+                calendar.style.maxWidth = '100%';
+                calendar.style.maxHeight = '100%';
+                calendar.style.margin = '0';
             },
-            dateClick: function(info) {
-                // 単一の日付をクリックしたときの動作
-                console.log('選択した日付:', info.dateStr);
-            },
+            onChange: function(selectedDates, dateStr, instance) {
+                console.log('範囲選択:', dateStr);
+                // ここで選択された日付範囲をAdaloに戻す処理を追加できます
+            }
         });
-
-        calendar.render();
     });
 </script>
 
 </body>
 </html>
+
 
 
 
