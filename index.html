@@ -17,14 +17,17 @@
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
+            box-sizing: border-box;
         }
         .calendar-container {
-            max-width: 600px;
-            margin: 20px;
+            width: 100%;  /* 画面の幅に合わせる */
+            padding: 10px;
+            box-sizing: border-box;
         }
-        /* カレンダーを画面全体に表示 */
         .flatpickr-calendar {
-            width: 100%;
+            width: 100%;  /* カレンダーの幅を親要素にフィット */
+            max-width: 100%;  /* 幅を画面に収める */
+            box-sizing: border-box;
         }
     </style>
 </head>
