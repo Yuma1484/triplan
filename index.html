@@ -3,19 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Range Picker</title>
+    <title>Agoda-style Date Range Picker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .calendar-container {
+            max-width: 600px;
+            margin: 20px;
+        }
+        #date-picker {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 
-<input type="text" id="date-picker">
+<div class="calendar-container">
+    <input type="text" id="date-picker" placeholder="Select your stay dates">
+</div>
 
 <script>
   flatpickr("#date-picker", {
     locale: "ja",
-    mode: "range"
+    mode: "range",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    showMonths: 2,  // 2つの月を並べて表示
+    onChange: function(selectedDates, dateStr, instance) {
+        console.log(`Selected date range: ${dateStr}`);
+    }
   });
 </script>
 
