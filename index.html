@@ -5,33 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date Range Picker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
+        /* カレンダーのスタイル設定 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* 必要に応じて背景色を変更 */
+        }
+        #calendar-container {
+            width: 90%;  /* カレンダーの幅を調整 */
+            max-width: 400px;
+        }
         .flatpickr-input {
-            font-size: 18px;  /* フォントサイズを18pxに設定 */
+            width: 100%;
+            font-size: 20px;  /* 日付テキストのサイズを調整 */
+            padding: 10px;
+            text-align: center;
+            display: none;  /* 隠して、カレンダーだけを表示 */
         }
     </style>
 </head>
 <body>
 
-    <input type="text" id="rangePicker" placeholder="日付を選択">
+<div id="calendar-container">
+    <input type="text" id="datePicker" placeholder="日付を選択">
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
-    <script>
-        flatpickr("#rangePicker", {
-            mode: "range",
-            dateFormat: "Y-m-d",
-            locale: "ja",  // 日本語ロケールを指定
-            onChange: function(selectedDates, dateStr, instance) {
-                const range = dateStr.split(" to ");
-                const startDate = range[0];
-                const endDate = range[1];
-                console.log(`Selected start date: ${startDate}, end date: ${endDate}`);
-            }
-        });
-    </script>
+<script>
+    flatpickr("#datePicker", {
+        mode: "range",  // 範囲選択モードを有効にする
+        dateFormat: "Y-m-d",  // 日付フォーマットを設定
+        locale: "ja",  // 日本語ロケールを指定
+        inline: true,  // カレンダーを常に表示する
+        onChange: function(selectedDates, dateStr, instance) {
+            console.log(`Selected date range: ${dateStr}`);
+            // ここで選択された日付範囲をAdaloに戻す処理を追加できます
+        }
+    });
+</script>
 
 </body>
+</html>
+
 </html>
 
 
