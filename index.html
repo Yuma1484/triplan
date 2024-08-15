@@ -8,50 +8,61 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
-        /* カレンダーのスタイル設定 */
+        /* 画面全体をカバーするスタイル設定 */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0; /* 必要に応じて背景色を変更 */
+            background-color: #f0f0f0; /* 背景色を設定（必要に応じて変更） */
         }
         #calendar-container {
-            width: 90%;  /* カレンダーの幅を調整 */
-            max-width: 400px;
-        }
-        .flatpickr-input {
             width: 100%;
-            font-size: 20px;  /* 日付テキストのサイズを調整 */
-            padding: 10px;
-            text-align: center;
-            display: none;  /* 隠して、カレンダーだけを表示 */
+            height: 100%;
+            max-width: 600px;  /* カレンダーの最大幅を600pxに設定 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .flatpickr-calendar {
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+        .flatpickr-months {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .flatpickr-current-month {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 0 10px;  /* 月と年の選択部分に余白を追加 */
+            box-sizing: border-box;
+            margin-bottom: 5px; /* ホイールピッカーが埋まらないように余白を追加 */
+        }
+        .flatpickr-monthDropdown-months, .numInputWrapper {
+            flex: 1;  /* 月と年のドロップダウンを均等に拡張 */
         }
     </style>
 </head>
 <body>
 
-<div id="calendar-container">
-    <input type="text" id="datePicker" placeholder="日付を選択">
-</div>
+<div id="calendar-container"></div>
 
 <script>
-    flatpickr("#datePicker", {
+    flatpickr("#calendar-container", {
         mode: "range",  // 範囲選択モードを有効にする
         dateFormat: "Y-m-d",  // 日付フォーマットを設定
-        locale: "ja",  // 日本語ロケールを指定
-        inline: true,  // カレンダーを常に表示する
-        onChange: function(selectedDates, dateStr, instance) {
-            console.log(`Selected date range: ${dateStr}`);
-            // ここで選択された日付範囲をAdaloに戻す処理を追加できます
-        }
-    });
-</script>
+        locale: "ja"
 
-</body>
-</html>
 
 
 
