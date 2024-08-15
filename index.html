@@ -22,32 +22,33 @@
         #calendar-container {
             width: 100%;
             height: 100%;
-            max-width: 600px;  /* 最大幅を設定して、画面中央に配置 */
-            max-height: 600px;  /* 最大高さを設定 */
+            max-width: 600px;  /* カレンダーの最大幅を600pxに設定 */
             display: flex;
             justify-content: center;
             align-items: center;
-            box-sizing: border-box;
-            padding: 20px;  /* 余白を追加して中央に配置 */
         }
         .flatpickr-calendar {
             width: 100%;
-            height: auto;  /* 高さを自動調整して埋まりを防ぐ */
+            height: auto;
+            box-sizing: border-box;
             font-size: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
         .flatpickr-months {
             display: flex;
-            justify-content: center;  /* 月と年の選択を中央に配置 */
+            justify-content: center;
             align-items: center;
+            width: 100%;
         }
         .flatpickr-current-month {
             display: flex;
-            justify-content: center;  /* 月と年を中央に配置 */
+            justify-content: center;
             align-items: center;
             width: 100%;
+            padding: 0 10px;  /* 月と年の選択部分に余白を追加 */
+            box-sizing: border-box;
+        }
+        .flatpickr-monthDropdown-months, .numInputWrapper {
+            flex: 1;  /* 月と年のドロップダウンを均等に拡張 */
         }
     </style>
 </head>
@@ -63,8 +64,11 @@
         inline: true,  // カレンダーを常に表示する
         onReady: function() {
             // カレンダーが表示された後に実行
-            document.querySelector('.flatpickr-calendar').style.width = '100%';
-            document.querySelector('.flatpickr-calendar').style.maxWidth = '100%';
+            const calendar = document.querySelector('.flatpickr-calendar');
+            calendar.style.width = '100%';
+            calendar.style.maxWidth = '100%';
+            calendar.style.height = 'auto';
+            calendar.style.margin = '0';
         },
         onChange: function(selectedDates, dateStr, instance) {
             console.log(`Selected date range: ${dateStr}`);
@@ -75,6 +79,7 @@
 
 </body>
 </html>
+
 
 
 
