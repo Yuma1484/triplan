@@ -41,6 +41,7 @@
             justify-content: center; /* カレンダー部分自体を中央に配置 */
             align-items: center;
             flex-direction: column;
+            position: relative; /* ボタンの位置を調整するために相対位置を設定 */
         }
         /* 月と年のホイールを左に寄せる */
         .flatpickr-current-month {
@@ -65,10 +66,14 @@
         }
         /* 月選択ボタンの位置調整 */
         .flatpickr-prev-month, .flatpickr-next-month {
-            margin: 0 5px; /* 左右のボタンの間隔を調整 */
+            position: absolute;
+            top: -30px; /* ボタンをカレンダーの上部に配置 */
+        }
+        .flatpickr-prev-month {
+            left: 5px; /* 左側のボタンを左に配置 */
         }
         .flatpickr-next-month {
-            margin-right: auto; /* 右側のボタンを左に寄せる */
+            right: 12vw; /* 右側のボタンを"土曜日"の上に配置 */
         }
     </style>
 </head>
