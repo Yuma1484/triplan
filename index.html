@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Date Range Picker</title>
+    <title>Large Centered Date Range Picker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -21,14 +21,14 @@
             overflow: hidden;
         }
         .calendar-container {
-            width: 90vw; /* 画面幅の90%に設定してバランスをとる */
-            max-width: 600px; /* 最大幅を設定して中央に寄せる */
+            width: 100vw; /* 画面幅全体に設定 */
+            max-width: 800px; /* 最大幅を広げる */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             background-color: #ffffff; /* 背景色を白に設定 */
         }
-        /* カレンダーを中央に表示 */
+        /* 大きなカレンダー表示 */
         .flatpickr-calendar {
             width: 100%;
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
@@ -38,12 +38,17 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            font-size: 1.5em; /* 全体のフォントサイズを大きく */
         }
-        /* 曜日と日付を中央に寄せる */
+        /* 曜日と日付を中央に寄せ、大きく表示 */
         .flatpickr-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             justify-items: center; /* 中央に寄せる */
+            font-size: 1.2em; /* 日付を大きく表示 */
+        }
+        .flatpickr-day {
+            padding: 15px; /* 日付のセルを大きく */
         }
     </style>
 </head>
