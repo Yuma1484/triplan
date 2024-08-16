@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Calendar Date Range Picker</title>
-    <link rel="stylesheet" href="https://unpkg.com/v-calendar/lib/v-calendar.min.css">
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="https://unpkg.com/v-calendar"></script>
+    <title>Agoda-style Date Range Picker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,59 +17,39 @@
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
-            box-sizing: border-box;
         }
-        #app {
+        .calendar-container {
             width: 100%;
-            max-width: 600px;
+            max-width: 100%;
+            margin: 0;
             padding: 10px;
             box-sizing: border-box;
         }
-        .vdp-datepicker__calendar {
+        /* カレンダーを画面全体に表示 */
+        .flatpickr-calendar {
             width: 100%;
+            max-width: 100%;
         }
     </style>
 </head>
 <body>
 
-<div id="app">
-    <v-date-picker
-      v-model="dateRange"
-      is-range
-      :min-date="new Date()"
-      :attributes="attrs"
-      :panes="2"  <!-- 2つの月を表示 -->
-      locale="ja"
-      is-inline
-    ></v-date-picker>
+<div class="calendar-container">
+    <div id="date-picker"></div> <!-- カレンダーだけを表示 -->
 </div>
 
 <script>
-  const app = Vue.createApp({
-    data() {
-      return {
-        dateRange: { start: null, end: null },
-        attrs: [
-          {
-            key: 'today',
-            highlight: true,
-            dates: new Date(),
-          }
-        ],
-      };
-    },
-    watch: {
-      dateRange(val) {
-        console.log(`Selected date range: ${val.start} - ${val.end}`);
-      }
+  flatpickr("#date-picker", {
+    locale: "ja",
+    mode: "range",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    showMonths: 1,  // 1つの月を表示
+    inline: true,  // カレンダーを常に表示する
+    onChange: function(selectedDates, dateStr, instance) {
+        console.log(`Selected date range: ${dateStr}`);
     }
   });
-
-  app.use(VCalendar, {
-    componentPrefix: 'v',  // Use <v-date-picker>, <v-calendar>, etc.
-  });
-
-  app.mount('#app');
 </script>
 
 </body>
