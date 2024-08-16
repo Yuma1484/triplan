@@ -27,11 +27,11 @@
         .flatpickr-calendar {
             width: 100%;  /* カレンダーの幅を親要素にフィット */
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column; /* カレンダー全体を縦に並べる */
         }
         .flatpickr-months {
-            display: flex;
-            flex-direction: column;  /* 月全体を縦に並べる */
-            width: 100%;
+            display: block;
         }
         .flatpickr-month {
             width: 100%;
@@ -59,6 +59,15 @@
     minDate: "today",
     showMonths: 2,  // 2つの月を表示
     inline: true,  // カレンダーを常に表示する
+    onReady: function(selectedDates, dateStr, instance) {
+        // カレンダーが表示された後に実行
+        const calendarContainer = document.querySelector('.flatpickr-calendar');
+        const monthContainers = document.querySelectorAll('.flatpickr-month');
+        // 各月を縦に並べるための処理
+        monthContainers.forEach(month => {
+            calendarContainer.appendChild(month);
+        });
+    },
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
     }
