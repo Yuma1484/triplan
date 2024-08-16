@@ -3,97 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Range Picker</title>
+    <title>Centered Date Range Picker with Month and Year</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
-        /* 画面全体をカバーするスタイル設定 */
-        body, html {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* 画面の中央に配置 */
             align-items: center;
-            background-color: #f0f0f0; /* 背景色を設定（必要に応じて変更） */
+            height: 100vh;
+            width: 100vw;
+            background-color: #ffffff; /* 背景色を白に設定 */
+            overflow: hidden;
         }
-        #calendar-container {
-            width: 100%;
-            height: 100%;
+        .calendar-container {
+            width: 90vw; /* 画面幅の90%に設定してバランスをとる */
+            max-width: 600px; /* 最大幅を設定 */
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff; /* 背景色を白に設定 */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* カレンダーを中央に配置 */
         }
+        /* カレンダー全体を中央に配置 */
         .flatpickr-calendar {
             width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            font-size: 20px;
+            background-color: #ffffff; /* カレンダーの背景も白に設定 */
+            border: none; /* 不要なボーダーをなくす */
+            box-shadow: none; /* 影を削除 */
             display: flex;
+            justify-content: center; /* カレンダー全体を中央に配置 */
+            align-items: center;
             flex-direction: column;
-            justify-content: center;
         }
-        .flatpickr-months {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
+        /* 月と年のホイールの背景を白に設定 */
         .flatpickr-current-month {
+            background-color: #ffffff; /* ホイールの背景色を白に設定 */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* ホイール部分を中央揃え */
             width: 100%;
-            padding: 0 10px;  /* 月と年の選択部分に余白を追加 */
-            box-sizing: border-box;
-            margin-bottom: 5px; /* ホイールピッカーが埋まらないように余白を追加 */
         }
-        .flatpickr-monthDropdown-months, .numInputWrapper {
-            flex: 1;  /* 月と年のドロップダウンを均等に拡張 */
+        .flatpickr-monthDropdown-months,
+        .flatpickr-yearDropdown {
+            background-color: #ffffff; /* ドロップダウンの背景色も白に設定 */
         }
+        /* 曜日と日付を中央に寄せる */
         .flatpickr-days {
-            flex: 1; /* 日付部分を残りのスペースに拡張 */
             display: grid;
-            grid-template-rows: auto;
             grid-template-columns: repeat(7, 1fr);
-            justify-items: center;
-            align-items: center;
-        }
-        .flatpickr-day {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-items: center; /* 曜日と日付を中央に寄せる */
         }
     </style>
 </head>
 <body>
 
-<div id="calendar-container"></div>
+<div class="calendar-container">
+    <div id="date-picker"></div> <!-- カレンダーだけを表示 -->
+</div>
 
 <script>
-    flatpickr("#calendar-container", {
-        mode: "range",  // 範囲選択モードを有効にする
-        dateFormat: "Y-m-d",  // 日付フォーマットを設定
-        locale: "ja",  // 日本語ロケールを指定
-        inline: true,  // カレンダーを常に表示する
-        onReady: function() {
-            // カレンダーが表示された後に実行
-            const calendar = document.querySelector('.flatpickr-calendar');
-            calendar.style.width = '100%';
-            calendar.style.height = '100%';
-            calendar.style.maxWidth = '100%';
-            calendar.style.maxHeight = '100%';
-            calendar.style.margin = '0';
-        },
-        onChange: function(selectedDates, dateStr, instance) {
-            console.log(Selected date range: ${dateStr});
-            // ここで選択された日付範囲をAdaloに戻す処理を追加できます
-        }
-    });
+  flatpickr("#date-picker", {
+    locale: "ja",
+    mode: "range",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    showMonths: 1,  // 1つの月を表示
+    inline: true,  // カレンダーを常に表示する
+    onChange: function(selectedDates, dateStr, instance) {
+        console.log(`Selected date range: ${dateStr}`);
+    }
+  });
 </script>
 
 </body>
