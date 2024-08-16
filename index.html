@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Right-Aligned Date Range Picker with Month and Year</title>
+    <title>Right-Aligned Calendar with Fixed Month and Year Wheel</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -23,21 +23,22 @@
         .calendar-container {
             width: 90vw; /* 画面幅の90%に設定してバランスをとる */
             max-width: 600px; /* 最大幅を設定 */
-            margin-left: 15vw; /* 左に10%のマージンを追加して右に寄せる */
             padding: 0;
             box-sizing: border-box;
             background-color: #ffffff; /* 背景色を白に設定 */
             display: flex;
-            justify-content: center; /* カレンダーを中央に配置 */
+            flex-direction: column; /* 縦方向に配置 */
+            align-items: center; /* ホイールを中央に固定 */
         }
-        /* カレンダー全体を中央に配置 */
+        /* カレンダー部分を右に移動 */
         .flatpickr-calendar {
             width: 100%;
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
             border: none; /* 不要なボーダーをなくす */
             box-shadow: none; /* 影を削除 */
+            margin-left: 13vw; /* カレンダー部分を右にずらす */
             display: flex;
-            justify-content: center; /* カレンダー全体を中央に配置 */
+            justify-content: center; /* カレンダー部分自体を中央に配置 */
             align-items: center;
             flex-direction: column;
         }
