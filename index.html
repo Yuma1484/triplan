@@ -51,17 +51,21 @@
             const endDate = selectedDates[1].toISOString().split('T')[0];
             const dateRange = `${startDate} - ${endDate}`;
 
-            // AdaloのTextFieldに日付範囲を保存
-            document.querySelector('input[name="selectedDateRange"]').value = dateRange;
+            // IDを使って要素を選択
+            const dateInput = document.getElementById('selectedDateRange');
+            if (dateInput) {
+                dateInput.value = dateRange;
+            } else {
+                console.error("selectedDateRange element not found");
+            }
 
-            // コンソールにも表示（デバッグ用）
+            // コンソールに選択された日付範囲を表示
             console.log("Selected Date Range:", dateRange);
-
-            // 完了ボタンを押した際にAdalo内で処理を行う
         }
     }
   });
 </script>
+
 
 </body>
 </html>
