@@ -21,7 +21,7 @@
             overflow: hidden;
         }
         .calendar-container {
-            width: 90vw; /* 画面幅の90%に設定してバランスをとる */
+            width: 100vw; /* 画面幅の100%に設定 */
             max-width: 600px; /* 最大幅を設定して中央に寄せる */
             height: auto;
             margin: 0;
@@ -35,6 +35,10 @@
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
             border: none; /* 不要なボーダーをなくす */
             box-shadow: none; /* 影を削除 */
+        }
+        /* 月のホイールの背景を白に設定 */
+        .flatpickr-current-month {
+            background-color: #ffffff; /* 背景を白に設定 */
         }
         /* 曜日と日付を右に寄せる */
         .flatpickr-days {
