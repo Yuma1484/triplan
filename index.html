@@ -21,7 +21,7 @@
             overflow: hidden;
         }
         .calendar-container {
-            width: 100vw; /* 画面幅全体に広げる */
+            width: 90vw; /* 画面幅の90%に設定してバランスをとる */
             max-width: 600px; /* 最大幅を設定して中央に寄せる */
             margin: 0;
             padding: 0;
@@ -34,20 +34,26 @@
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
             border: none; /* 不要なボーダーをなくす */
             box-shadow: none; /* 影を削除 */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* カレンダーを中央に配置 */
         }
-        /* 曜日と日付を右に寄せる */
-        .flatpickr-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            justify-items: end; /* 右に寄せる */
-        }
-        /* 月のホイールの背景を白に設定 */
+        /* 月と年のドロップダウンをそのままに */
         .flatpickr-current-month {
             background-color: #ffffff; /* ホイールの背景色を白に設定 */
+            display: flex;
+            justify-content: center; /* 中央揃え */
+            width: 100%;
         }
         .flatpickr-monthDropdown-months,
         .flatpickr-yearDropdown {
             background-color: #ffffff; /* ドロップダウンの背景色も白に設定 */
+        }
+        /* 曜日と日付を中央に寄せる */
+        .flatpickr-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            justify-items: center; /* 中央に寄せる */
         }
     </style>
 </head>
