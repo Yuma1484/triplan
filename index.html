@@ -29,6 +29,16 @@
             box-shadow: none; /* シャドウを削除 */
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
         }
+        
+        /* iPadでの表示を最適化するメディアクエリ */
+        @media only screen and (min-width: 768px) {
+            .calendar-container {
+                max-width: 800px; /* iPadではカレンダーの幅を広げる */
+            }
+            .flatpickr-calendar {
+                font-size: 18px; /* iPadではカレンダーのフォントサイズを大きくする */
+            }
+        }
     </style>
 </head>
 <body>
