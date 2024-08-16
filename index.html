@@ -37,6 +37,31 @@
             border: none; /* 不要なボーダーをなくす */
             box-shadow: none; /* 影を削除 */
         }
+        /* 曜日と日付を右にずらす */
+        .flatpickr-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            justify-items: end; /* 右に寄せる */
+        }
+        /* 日曜日と祝日を赤、土曜日を青に設定 */
+        .flatpickr-weekday {
+            color: #000000; /* 他の曜日は黒 */
+            text-align: center;
+        }
+        .flatpickr-day {
+            color: #000000; /* 他の日付は黒 */
+        }
+        .flatpickr-weekday:nth-child(1), /* 日曜日 */
+        .flatpickr-day:nth-child(1) {
+            color: red;
+        }
+        .flatpickr-weekday:nth-child(7), /* 土曜日 */
+        .flatpickr-day:nth-child(7) {
+            color: blue;
+        }
+        .flatpickr-day.holiday { /* 祝日 */
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -53,6 +78,14 @@
     minDate: "today",
     showMonths: 1,  // 1つの月を表示
     inline: true,  // カレンダーを常に表示する
+    onDayCreate: function(dObj, dStr, fp, dayElem) {
+        // 日付が作成されるたびに祝日をハイライト
+        const date = new Date(dayElem.dateObj);
+        const holidays = [/* 祝日の配列を追加する */];
+        if (holidays.some(holiday => holiday.getTime() === date.getTime())) {
+            dayElem.classList.add('holiday');
+        }
+    },
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
     }
