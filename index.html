@@ -17,25 +17,45 @@
             align-items: center;
             height: 100vh;
             width: 100vw;
-            background-color: #ffffff; /* 背景色を白に設定 */
-            overflow: hidden; /* 画面全体に広げる */
+            background-color: #ffffff;
+            overflow: hidden;
         }
         .calendar-container {
-            width: 100vw; /* 幅を画面全体に広げる */
-            height: 100vh; /* 高さを画面全体に広げる */
+            width: 100vw;
+            height: 100vh;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #ffffff; /* 背景色を白に設定 */
-            overflow: hidden; /* 余白を防ぐために隠す */
+            background-color: #ffffff;
+            overflow: hidden;
         }
-        /* カレンダーを画面全体に表示 */
         .flatpickr-calendar {
             width: 100%;
             height: 100%;
-            background-color: #ffffff; /* カレンダーの背景も白に設定 */
-            border: none; /* 不要なボーダーをなくす */
-            box-shadow: none; /* 影を削除 */
+            background-color: #ffffff;
+            border: none;
+            box-shadow: none;
+            font-size: 18px; /* 文字と数字を大きくする */
+        }
+        .flatpickr-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            justify-items: end; /* 曜日を右寄せ */
+            padding-right: 10px;
+        }
+        .flatpickr-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            justify-items: end; /* 日付を右寄せ */
+            padding-right: 10px;
+        }
+        .flatpickr-day {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-end; /* 日付の数字を右寄せ */
+            align-items: center;
+            padding-right: 10px;
         }
     </style>
 </head>
@@ -51,8 +71,8 @@
     mode: "range",
     dateFormat: "Y-m-d",
     minDate: "today",
-    showMonths: 1,  // 1つの月を表示
-    inline: true,  // カレンダーを常に表示する
+    showMonths: 1,
+    inline: true,
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
     }
