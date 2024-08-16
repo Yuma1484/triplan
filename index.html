@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Right-Aligned Calendar with Adjusted Month Navigation</title>
+    <title>Agoda-style Date Range Picker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -13,67 +13,18 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center; /* 画面の中央に配置 */
+            justify-content: center;
             align-items: center;
             height: 100vh;
-            width: 100vw;
-            background-color: #ffffff; /* 背景色を白に設定 */
-            overflow: hidden;
+            background-color: #f0f0f0;
         }
         .calendar-container {
-            width: 90vw; /* 画面幅の90%に設定してバランスをとる */
-            max-width: 600px; /* 最大幅を設定 */
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #ffffff; /* 背景色を白に設定 */
-            display: flex;
-            flex-direction: column; /* 縦方向に配置 */
-            align-items: center; /* カレンダーを中央に固定 */
+            max-width: 600px;
+            margin: 20px;
         }
-        /* カレンダー部分を右に移動 */
+        /* カレンダーを画面全体に表示 */
         .flatpickr-calendar {
             width: 100%;
-            background-color: #ffffff; /* カレンダーの背景も白に設定 */
-            border: none; /* 不要なボーダーをなくす */
-            box-shadow: none; /* 影を削除 */
-            margin-left: 12vw; /* カレンダー部分を右にずらす */
-            display: flex;
-            justify-content: center; /* カレンダー部分自体を中央に配置 */
-            align-items: center;
-            flex-direction: column;
-            position: relative; /* ボタンの位置を調整するために相対位置を設定 */
-        }
-        /* 月と年のホイールを左に寄せる */
-        .flatpickr-current-month {
-            background-color: #ffffff; /* ホイールの背景色を白に設定 */
-            display: flex;
-            justify-content: flex-start; /* ホイール部分を左に寄せる */
-            width: 100%;
-            padding-left: 7vw; /* 左にパディングを追加して左に寄せる */
-        }
-        .flatpickr-monthDropdown-months {
-            margin-right: 10px; /* 月と年の間にスペースを追加 */
-        }
-        .flatpickr-monthDropdown-months,
-        .flatpickr-yearDropdown {
-            background-color: #ffffff; /* ドロップダウンの背景色も白に設定 */
-        }
-        /* 曜日と日付を中央に寄せる */
-        .flatpickr-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            justify-items: center; /* 曜日と日付を中央に寄せる */
-        }
-        /* 月選択ボタンの位置調整 */
-        .flatpickr-prev-month, .flatpickr-next-month {
-            position: absolute;
-            top: -30px; /* ボタンをカレンダーの上部に配置 */
-        }
-        .flatpickr-prev-month {
-            left: 5px; /* 左側のボタンを左に配置 */
-        }
-        .flatpickr-next-month {
-            right: 12vw; /* 右側のボタンを"土曜日"の上に配置 */
         }
     </style>
 </head>
@@ -89,7 +40,7 @@
     mode: "range",
     dateFormat: "Y-m-d",
     minDate: "today",
-    showMonths: 1,  // 1つの月を表示
+    showMonths: 1,  // 2つの月を並べて表示
     inline: true,  // カレンダーを常に表示する
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
