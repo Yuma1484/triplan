@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Right-Aligned Calendar with Space Between Month and Year</title>
+    <title>Balanced Month Selector</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -46,7 +46,7 @@
         .flatpickr-current-month {
             background-color: #ffffff; /* ホイールの背景色を白に設定 */
             display: flex;
-            justify-content: flex-start; /* ホイール部分を左に寄せる */
+            justify-content: center; /* ホイール部分を中央揃え */
             width: 100%;
             padding-left: 7vw; /* 左にパディングを追加して左に寄せる */
         }
@@ -56,6 +56,18 @@
         .flatpickr-monthDropdown-months,
         .flatpickr-yearDropdown {
             background-color: #ffffff; /* ドロップダウンの背景色も白に設定 */
+        }
+        /* 月の選択ボタンをバランスよく配置 */
+        .flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .flatpickr-prev-month {
+            left: -10px; /* 左のボタンを少し右に寄せる */
+        }
+        .flatpickr-next-month {
+            right: -10px; /* 右のボタンを少し左に寄せる */
         }
         /* 曜日と日付を中央に寄せる */
         .flatpickr-days {
