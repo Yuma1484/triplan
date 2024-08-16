@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single Month Date Range Picker</title>
+    <title>Centered Date Range Picker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -28,26 +28,16 @@
             box-sizing: border-box;
             background-color: #ffffff; /* 背景色を白に設定 */
         }
-        /* カレンダーをバランスよく中央に表示 */
+        /* カレンダーを中央に表示 */
         .flatpickr-calendar {
             width: 100%;
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
             border: none; /* 不要なボーダーをなくす */
             box-shadow: none; /* 影を削除 */
             display: flex;
+            justify-content: center;
+            align-items: center;
             flex-direction: column;
-            align-items: center; /* カレンダーを中央に配置 */
-        }
-        /* 月と年のドロップダウンをそのままに */
-        .flatpickr-current-month {
-            background-color: #ffffff; /* ホイールの背景色を白に設定 */
-            display: flex;
-            justify-content: center; /* 中央揃え */
-            width: 100%;
-        }
-        .flatpickr-monthDropdown-months,
-        .flatpickr-yearDropdown {
-            background-color: #ffffff; /* ドロップダウンの背景色も白に設定 */
         }
         /* 曜日と日付を中央に寄せる */
         .flatpickr-days {
@@ -71,6 +61,15 @@
     minDate: "today",
     showMonths: 1,  // 1つの月を表示
     inline: true,  // カレンダーを常に表示する
+    prevArrow: '',  // 月切り替えの矢印を非表示
+    nextArrow: '',
+    onReady: function(selectedDates, dateStr, instance) {
+      // 月と年のピッカーを取り除く
+      const monthNav = document.querySelector('.flatpickr-months');
+      if (monthNav) {
+          monthNav.style.display = 'none';
+      }
+    },
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
     }
