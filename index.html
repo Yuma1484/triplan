@@ -43,20 +43,18 @@
     mode: "range",
     dateFormat: "Y-m-d",
     minDate: "today",
-    showMonths: 1,  // 1ヶ月分の月を表示
-    inline: true,  // カレンダーを常に表示する
+    showMonths: 1,
+    inline: true,
     onChange: function(selectedDates, dateStr, instance) {
         if (selectedDates.length === 2) {
             const startDate = selectedDates[0].toISOString().split('T')[0];
             const endDate = selectedDates[1].toISOString().split('T')[0];
             const dateRange = `${startDate} - ${endDate}`;
 
-            // ここでAdaloに日付範囲を渡します。
-            // WebViewの内部からAdaloにデータを渡す
-            window.adaloBridge.postMessage(dateRange);
+            // ここではJavaScript内での保存を行わず、日付範囲をコンソールに表示
+            console.log("Selected Date Range:", dateRange);
 
-            // 前の画面に戻る
-            window.location.href = "adalo://back";
+            // 完了ボタンを押した際にAdalo内で処理を行う
         }
     }
   });
