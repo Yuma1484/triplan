@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Right-Aligned Date Range Picker</title>
+    <title>Centered Right-Aligned Date Range Picker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: flex-end; /* 右に寄せる */
+            justify-content: center; /* 画面の中央に配置 */
             align-items: center;
             height: 100vh;
             width: 100vw;
@@ -27,8 +27,10 @@
             padding: 0;
             box-sizing: border-box;
             background-color: #ffffff; /* 背景色を白に設定 */
+            display: flex;
+            justify-content: flex-end; /* カレンダーを右に寄せる */
         }
-        /* カレンダーを右に寄せて表示 */
+        /* カレンダーを右寄せしつつ中央に表示 */
         .flatpickr-calendar {
             width: 100%;
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
