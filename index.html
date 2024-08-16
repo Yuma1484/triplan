@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Right-Aligned Calendar with Fixed Month and Year Wheel</title>
+    <title>Left-Aligned Month and Year Wheel with Centered Calendar</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
@@ -28,7 +28,7 @@
             background-color: #ffffff; /* 背景色を白に設定 */
             display: flex;
             flex-direction: column; /* 縦方向に配置 */
-            align-items: center; /* ホイールを中央に固定 */
+            align-items: center; /* カレンダーを中央に固定 */
         }
         /* カレンダー部分を右に移動 */
         .flatpickr-calendar {
@@ -42,18 +42,17 @@
             align-items: center;
             flex-direction: column;
         }
-        /* 月と年のホイールの背景を白に設定 */
+        /* 月と年のホイールを左に寄せる */
         .flatpickr-current-month {
             background-color: #ffffff; /* ホイールの背景色を白に設定 */
             display: flex;
-            justify-content: center; /* ホイール部分を中央揃え */
+            justify-content: flex-start; /* ホイール部分を左に寄せる */
             width: 100%;
-            margin-right: 7vw;
+            padding-left: 7vw; /* 左にパディングを追加して左に寄せる */
         }
         .flatpickr-monthDropdown-months,
         .flatpickr-yearDropdown {
             background-color: #ffffff; /* ドロップダウンの背景色も白に設定 */
-            margin-right: 7vw;
         }
         /* 曜日と日付を中央に寄せる */
         .flatpickr-days {
