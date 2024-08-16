@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Calendar API with FullCalendar</title>
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css' rel='stylesheet' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js'></script>
-    <script src="https://apis.google.com/js/api.js"></script>
+    <title>Vertical Scrollable Date Range Picker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,70 +20,49 @@
             background-color: #ffffff; /* 背景色を白に設定 */
             overflow: hidden;
         }
-        #calendar {
+        .calendar-container {
             width: 90vw; /* 画面幅の90%に設定してバランスをとる */
             max-width: 600px; /* 最大幅を設定して中央に寄せる */
             height: 100%;
             overflow-y: auto; /* 縦スクロールを有効にする */
+            padding: 10px 0;
             box-sizing: border-box;
             background-color: #ffffff; /* 背景色を白に設定 */
+        }
+        /* カレンダーをバランスよく中央に表示 */
+        .flatpickr-calendar {
+            width: 100%;
+            background-color: #ffffff; /* カレンダーの背景も白に設定 */
+            border: none; /* 不要なボーダーをなくす */
+            box-shadow: none; /* 影を削除 */
+            display: block; /* カレンダーを縦に並べる */
+        }
+        /* 曜日と日付を右に寄せる */
+        .flatpickr-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            justify-items: end; /* 右に寄せる */
         }
     </style>
 </head>
 <body>
 
-<div id="calendar"></div>
+<div class="calendar-container">
+    <div id="date-picker"></div> <!-- カレンダーだけを表示 -->
+</div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',  // 月表示で開始
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      selectable: true,  // 範囲選択を有効にする
-      selectMirror: true,
-      eventSources: [
-        {
-          googleCalendarId: 'あなたのGoogleカレンダーID@group.calendar.google.com',
-          className: 'gcal-event'
-        }
-      ],
-      select: function(info) {
-        alert('Selected range: ' + info.startStr + ' to ' + info.endStr);
-      }
-    });
-
-    calendar.render();
+  flatpickr("#date-picker", {
+    locale: "ja",
+    mode: "range",
+    dateFormat: "Y-m-d",
+    minDate: "today",
+    showMonths: 1,  // 3つの月を表示して縦に並べる
+    inline: true,  // カレンダーを常に表示する
+    onChange: function(selectedDates, dateStr, instance) {
+        console.log(`Selected date range: ${dateStr}`);
+    }
   });
-
-  // Load the API and make an API call
-  function start() {
-    gapi.client.init({
-      'apiKey': 'AIzaSyCuSFSPANzIfoPfYl0u5k7qCDEyVaH1aigAIzaSyCuSFSPANzIfoPfYl0u5k7qCDEyVaH1aig', // あなたのAPIキー
-      'clientId': '518084840479-t2fosfb94t8mlqi4bvjn9e5qbrvlbpk0.apps.googleusercontent.com',
-      'scope': 'https://www.googleapis.com/auth/calendar.readonly',
-      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
-    }).then(function() {
-      return gapi.client.calendar.events.list({
-        'calendarId': 'primary',
-        'timeMin': (new Date()).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 10,
-        'orderBy': 'startTime'
-      });
-    }).then(function(response) {
-      var events = response.result.items;
-      console.log('Events: ', events);
-    });
-  }
-
-  gapi.load('client', start);
 </script>
 
 </body>
