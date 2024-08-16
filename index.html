@@ -21,18 +21,19 @@
             overflow: hidden; /* 画面全体に広げる */
         }
         .calendar-container {
-            width: 100vw; /* 幅を画面全体に広げる */
-            height: 100vh; /* 高さを画面全体に広げる */
+            width: 90vw; /* 画面幅の90%に設定してバランスをとる */
+            max-width: 600px; /* 最大幅を設定して中央に寄せる */
+            margin-left: 13vw;
+            height: auto;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             background-color: #ffffff; /* 背景色を白に設定 */
-            overflow: hidden; /* 余白を防ぐために隠す */
         }
-        /* カレンダーを画面全体に表示 */
+        /* カレンダーをバランスよく中央に表示 */
         .flatpickr-calendar {
             width: 100%;
-            height: 100%;
+            height: auto;
             background-color: #ffffff; /* カレンダーの背景も白に設定 */
             border: none; /* 不要なボーダーをなくす */
             box-shadow: none; /* 影を削除 */
