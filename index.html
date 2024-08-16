@@ -16,15 +16,18 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #ffffff; /* 背景を白に設定 */
         }
         .calendar-container {
+            width: 100%;
             max-width: 600px;
-            margin: 20px;
+            margin: 0; /* 余白をなくす */
+            background-color: #ffffff; /* 背景を白に設定 */
         }
         /* カレンダーを画面全体に表示 */
         .flatpickr-calendar {
             width: 100%;
+            box-shadow: none; /* シャドウを削除 */
         }
     </style>
 </head>
@@ -40,7 +43,7 @@
     mode: "range",
     dateFormat: "Y-m-d",
     minDate: "today",
-    showMonths: 1,  // 2つの月を並べて表示
+    showMonths: 2,  // 2つの月を並べて表示
     inline: true,  // カレンダーを常に表示する
     onChange: function(selectedDates, dateStr, instance) {
         console.log(`Selected date range: ${dateStr}`);
